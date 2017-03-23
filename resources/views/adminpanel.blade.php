@@ -164,11 +164,67 @@
                 <ul class="submenu">
                     @foreach($admin_categories as $admin_category)
                         <li @if(Request::is('*/'.$admin_category->link.'') || Request::is('*/'.$admin_category->link.'/*')) class="active" @endif>
-                            <a href="{{ $url }}/articles/{{ $admin_category->link }}" @if($admin_category->active == 0) style="color:#e4e1e1" @endif>
+                            <a href="{{ $url }}/articles/{{ $admin_category->link }}" @if($admin_category->active == 0) style="color:#e4e1e1" @endif @if($admin_category->category_children->count()) class="dropdown-toggle" @endif >
                                 <i class="icon-double-angle-right"></i>
                                 {{ $admin_category->getTranslate('title') }}
+                                @if($admin_category->category_children->count())
+                                    <b class="arrow icon-angle-down"></b>
+                                @endif
                             </a>
+
+                            @foreach($admin_category->category_children as $admin_category_children)
+                                <ul class="submenu">
+                                    <li @if(Request::is('*/'.$admin_category_children->link.'') || Request::is('*/'.$admin_category_children->link.'/*')) class="active" @endif>
+                                        <a href="{{ $url }}/articles/{{ $admin_category_children->link }}" @if($admin_category_children->active == 0) style="color:#e4e1e1" @endif>
+                                            {{ $admin_category_children->getTranslate('title') }}
+                                        </a>
+                                    </li>
+                                </ul>
+                            @endforeach
                         </li>
+
+                        {{--<li>
+                            <a href="#" class="dropdown-toggle">
+                                <i class="icon-double-angle-right"></i>
+
+                                Three Level Menu
+                                <b class="arrow icon-angle-down"></b>
+                            </a>
+
+                            <ul class="submenu">
+                                <li>
+                                    <a href="#">
+                                        <i class="icon-leaf"></i>
+                                        Item #1
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#" class="dropdown-toggle">
+                                        <i class="icon-pencil"></i>
+
+                                        4th level
+                                        <b class="arrow icon-angle-down"></b>
+                                    </a>
+
+                                    <ul class="submenu">
+                                        <li>
+                                            <a href="#">
+                                                <i class="icon-plus"></i>
+                                                Add Product
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a href="#">
+                                                <i class="icon-eye-open"></i>
+                                                View Products
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>--}}
                     @endforeach
                     @if( (Auth::user()->name) == 'root' )
                         <li>

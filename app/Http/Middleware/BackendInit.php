@@ -23,7 +23,7 @@ class BackendInit {
 
 	public function handle($request, Closure $next)
 	{
-		$admin_categories = Category::all();
+		$admin_categories = Category::where('parent_id',0)->get();
 		//Подключение в Backend url типа
 		$url = url('adminLrjfW');
 		//Подключение в Backend version

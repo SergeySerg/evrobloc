@@ -8,12 +8,12 @@ class Category extends Translate {
         return $this->hasMany('App\Models\Article');
     }
 
-    public function parent()
+    public function category_parent()
     {
         return $this->belongsTo('App\Models\Category', 'parent_id');
     }
 
-    public function children()
+    public function category_children()
     {
         return $this->hasMany('App\Models\Category', 'parent_id');
     }

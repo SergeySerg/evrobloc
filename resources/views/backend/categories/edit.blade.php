@@ -8,29 +8,17 @@
             <i class="icon-angle-right arrow-icon"></i>
         </span>
     </li>
-    @if (isset($admin_category))
-        Редагування категорії
-    @else
-        Додати категорію
-    @endif
+    {{ isset($admin_category) ? "Редагування категорії" : 'Додати категорію' }}
 @stop
 
 @section('content')
 
     <div class="page-content">
         <div class="page-header position-relative">
-            <h1>
-                @if (isset($admin_category))
-                    Редагувати категорію
-                @else
-                    Додати категорію
-                @endif
-            </h1>
+            <h1>{{ isset($admin_category) ? "Редагування категорії" : 'Додати категорію' }}</h1>
         </div><!--/.page-header-->
         <div class="row-fluid">
             <div class="span12">
-
-
 
                 <!--PAGE CONTENT BEGINS-->
                 <form class="form-horizontal" id="resource-form-category" method="POST" action="" enctype="multipart/form-data" />
@@ -246,10 +234,10 @@
                                 <label class="control-label" for="form-field-select-1">Відношення до записів</label>
 --}}
                                 <div class="controls">
-                                    <select name="article_parent" id="form-field-select-1">
+                                    <select name="parent_id" id="form-field-select-1">
                                         <option value="">
                                             @foreach($admin_categories as $category_item)
-                                        </option><option value="{{ $category_item->id}}" @if(isset($article_parent) && ($article_parent == $category_item->id)) selected="selected" @endif>{{ $category_item->getTranslate('title') }}
+                                                </option><option value="{{ $category_item->id}}" @if(isset($category_parent) && ($category_parent  == $category_item->id)) selected="selected" @endif>{{ $category_item->getTranslate('title') }}
                                             @endforeach
                                         </option>
                                     </select>

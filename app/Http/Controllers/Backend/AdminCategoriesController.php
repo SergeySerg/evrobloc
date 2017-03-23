@@ -85,12 +85,15 @@ class AdminCategoriesController extends Controller {
 		foreach($langs as $lang){
 			$this->validate($request, [
 				'title_'.$lang['lang'] => 'required|max:255',
-				'link' => "required|max:15|unique:categories",
+				'link' => "required|unique:categories",
 				'img' => 'mimes:jpeg,jpg,png,bmp,gif|max:5000'
 			]);
 		}
 
 		$all = $request->all();
+
+		//create rightly slug
+		$all['link'] = str_slug($all['link'], '-');
 
 		$category_img = $request->file('img');
 		//dd($category_img);
@@ -141,7 +144,7 @@ class AdminCategoriesController extends Controller {
 		$admin_category = Category::where("link","=","$type")->first();
 
 		//Var article_parent
-		$article_parent = $admin_category['article_parent'];
+		$category_parent = $admin_category['parent_id'];
 
 		//Создание папки соответсвующие id
 		Storage::makeDirectory('upload/categories/' . $admin_category->id, '0777', true, true);
@@ -152,7 +155,7 @@ class AdminCategoriesController extends Controller {
 		//Decode attributes from articles DB
 		$attributes_fields = $fields->attributes;
 		return view('backend.categories.edit')
-			->with(compact('langs','admin_category','type','attributes_fields','article_parent'))
+			->with(compact('langs','admin_category','type','attributes_fields','category_parent'))
 			->with(['action_method' => 'put']);
 
 		/*return view('backend.categories.edit', [
@@ -188,11 +191,14 @@ class AdminCategoriesController extends Controller {
 		foreach($langs as $lang){
 			$this->validate($request, [
 				'title_'.$lang['lang'] => 'required|max:255',
-				'link' => "required|max:15",
+				'link' => "required",
 				'img' => 'mimes:jpeg,jpg,png,bmp,gif|max:5000'
 			]);
 		}
 
+		//create rightly slug
+		$all['link'] = str_slug($all['link'], '-');
+		
 		$category_img = $request->file('img');
 		//dd($category_img);
 
@@ -256,7 +262,7 @@ class AdminCategoriesController extends Controller {
 		return response()->json([
 			"status" => 'success',
 			"message" => 'Успішно збережено',
-			"redirect" => URL::route('admin_dashboard')
+			"redirect" => route('admin_dashboard')
 		]);
 	}
 

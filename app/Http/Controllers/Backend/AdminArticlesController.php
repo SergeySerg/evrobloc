@@ -26,16 +26,12 @@ class AdminArticlesController extends Controller {
 	{
 		App::setLocale('ua');
 		$admin_category = Category::where("link","=",$type)->first();
+		$admin_category_parent = $admin_category->category_parent()->first();
+		$admin_category_children = $admin_category->category_children()->get();
+		/*dd($admin_category_parent);*/
 		$admin_articles = $admin_category->articles;
-		//dd($admin_articles);
-		$langs = Lang::all();
+		return view('backend.articles.list')->with(compact('admin_category','admin_articles','type','admin_category_children','admin_category_parent'));
 
-		return view('backend.articles.list', [
-			'admin_category' => $admin_category,
-			'admin_articles' => $admin_articles,
-			'type' => $type,
-			'langs' => $langs
-		]);
 	}
 
 	/* Optimize images - Minimize uploaded files @return Response */

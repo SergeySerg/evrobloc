@@ -9,6 +9,14 @@
             <i class="icon-angle-right arrow-icon"></i>
         </span>
     </li>
+    @if(isset($admin_category_parent))
+    <li>
+        <a href="{{ $url }}/articles/{{ $admin_category_parent->link }}">{{ $admin_category_parent->getTranslate('title') }}</a>
+        <span class="divider">
+            <i class="icon-angle-right arrow-icon"></i>
+        </span>
+    </li>
+    @endif
     <li class="active">{{ $admin_category->getTranslate('title') }}</li>
 @stop
 
