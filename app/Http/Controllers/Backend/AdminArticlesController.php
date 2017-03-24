@@ -100,15 +100,20 @@ class AdminArticlesController extends Controller {
 		foreach($langs as $lang){
 			$this->validate($request, [
 				'title_'.$lang['lang'] => 'required|max:255',
+				'img' => 'mimes:jpeg,jpg,png,bmp,gif|max:5000'
 			]);
 		}
 
 		$all = $request->all();
 
 		// Get current category ID
-		$category = Category::where('link','=',$type)->first();
+		$category = Category::where('link',$type)->first();
+
 		$all['category_id'] = $category->id;
 		//$all['article_id'] = $category->article_parent;
+
+		//add img
+		$article_img = $request->file('img');
 
 		//Encode all attributes in DB
 		if (isset($all['attributes'])){
@@ -118,9 +123,19 @@ class AdminArticlesController extends Controller {
 		// Сreate array for multilanguage (example- (ua|ru|en))
 		$all = $this->prepareArticleData($all);
 
-		dd($all);
 		//Create new entry in DB
-		Article::create($all);
+		$article = Article::create($all);
+
+		//add category img and save in file
+		if($article_img){
+			$extension = $article_img->getClientOriginalExtension();
+			$name_img = $article->id  . '-' . time() . '.' . $extension;
+			Storage::put('upload/articles/' .$article->id   .'/main/' . $name_img, file_get_contents($article_img));
+			$all['img'] = 'upload/articles/' .$article->id .'/main/' . $name_img;
+		}
+
+		//update $all after save img
+		$article->update($all);
 
 		//JSON respons when entry in DB successfully
 		return response()->json([
@@ -182,10 +197,27 @@ class AdminArticlesController extends Controller {
 				'title_'.$lang['lang'] => 'required|max:255',
 			]);
 		}
-		$article = Article::where('id', '=', $id)->first();
+		$article = Article::where('id', $id)->first();
 
 		//create var all for date from request
 		$all = $request->all();
+
+		//add img
+		$article_img = $request->file('img');
+
+		//add category img and save in file
+		if($article_img){
+			$extension = $article_img->getClientOriginalExtension();
+			$name_img = $article->id . '-' . time() . '.' . $extension;
+			Storage::deleteDirectory('upload/articles/' . $article->id . '/main');
+			Storage::put('upload/articles/' . $article->id . '/main/' . $name_img, file_get_contents($article_img));
+			$all['img'] = 'upload/articles/' . $article->id . '/main/' . $name_img;
+		}
+		elseif($all['img_status'] == 'false'){
+			$all['img'] = null;
+			Storage::deleteDirectory('upload/articles/' . $article->id . '/main');
+
+		}
 
 		//Pull imgs from folder and present in JSON format
 		$files = Storage::Files('upload/articles/'.$id.'/images/');

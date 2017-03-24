@@ -477,6 +477,19 @@
                                     <tr>
                                         <td class="center">
                                             <label>
+                                                <input type="checkbox" name="img" />
+                                                <span class="lbl"></span>
+                                            </label>
+                                        </td>
+
+                                        <td>
+                                            Картинка
+                                        </td>
+                                        <td>img</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="center">
+                                            <label>
                                                 <input type="checkbox" name="gallery" />
                                                 <span class="lbl"></span>
                                             </label>

@@ -269,12 +269,16 @@ $(function(){
     $('.resource-save').on('click', function(event){
         //alert('tut');
         get_wysiwyg();
-        var data = $('form#resource-form').serialize();
+        var data = new FormData($('form#resource-form')[0]);
+        /*var data = $('form#resource-form').serialize();*/
         // var $thisEl = $(this);
         $.ajax({
             url: '',
             method: "POST",
+            processData: false,
+            contentType: false,
             data: data,
+            dataType : "json",
             success: function(data){
                 console.info('Server response: ', data);
                 if(data.status == 'success'){

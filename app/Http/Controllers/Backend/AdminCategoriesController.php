@@ -95,16 +95,11 @@ class AdminCategoriesController extends Controller {
 		//create rightly slug
 		$all['link'] = str_slug($all['link'], '-');
 
+		//add img
 		$category_img = $request->file('img');
 		//dd($category_img);
 
-		//add category img and save in file
-		if($category_img){
-			$extension = $category_img->getClientOriginalExtension();
-			$name_img = $all['link'] . '.' . $extension;
-			Storage::put('upload/categories/' .$all['link'] .'/' . $name_img, file_get_contents($category_img));
-			$all['img'] = 'upload/categories/' .$all['link'] .'/' . $name_img;
-		}
+
 		/*else{
 			$all['img'] = null;
 			Storage::deleteDirectory('upload/categories/' . $type);
@@ -115,7 +110,19 @@ class AdminCategoriesController extends Controller {
 		$all = $this->prepareArticleData($all);
 
 		//Create new entry in DB
-		Category::create($all);
+		$category = Category::create($all);
+
+		//add category img and save in file
+		if($category_img){
+			$extension = $category_img->getClientOriginalExtension();
+			$name_img = $all['link'] . '-' . time() . '.' . $extension;
+			Storage::put('upload/categories/' . $category->id . '/main/' . $name_img, file_get_contents($category_img));
+			$all['img'] = 'upload/categories/' . $category->id . '/main/' . $name_img;
+		}
+
+		//update $all after save img
+		$category->update($all);
+
 
 		//JSON respons when entry in DB successfully
 		return response()->json([
@@ -146,7 +153,7 @@ class AdminCategoriesController extends Controller {
 		//Var article_parent
 		$category_parent = $admin_category['parent_id'];
 
-		//Создание папки соответсвующие id
+		//create folder with id
 		Storage::makeDirectory('upload/categories/' . $admin_category->id, '0777', true, true);
 
 		//Decode base and attributes from categories DB
@@ -198,7 +205,7 @@ class AdminCategoriesController extends Controller {
 
 		//create rightly slug
 		$all['link'] = str_slug($all['link'], '-');
-		
+
 		$category_img = $request->file('img');
 		//dd($category_img);
 
@@ -206,6 +213,7 @@ class AdminCategoriesController extends Controller {
 		if($category_img){
 			$extension = $category_img->getClientOriginalExtension();
 			$name_img = $all['link'] . '-' . time() . '.' . $extension;
+			Storage::deleteDirectory('upload/categories/' . $category->id . '/main');
 			Storage::put('upload/categories/' . $category->id . '/main/' . $name_img, file_get_contents($category_img));
 			$all['img'] = 'upload/categories/' . $category->id . '/main/' . $name_img;
 		}

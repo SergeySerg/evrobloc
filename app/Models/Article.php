@@ -11,6 +11,7 @@ class Article extends Translate {
         'short_description',
         'description',
         'attributes',
+        'img',
         'imgs',
         'priority',
         'meta_description',
