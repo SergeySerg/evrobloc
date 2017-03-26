@@ -24,7 +24,7 @@ Route::get('/', 'Frontend\HomeController@index');//Перенаправленн�
 
 /*Callback group route*/
 Route::post('/contact', ['uses' => 'Frontend\ArticleController@contact','as' => 'contact']);//Обработчик Обратной связи
-Route::post('/callback', ['uses' => 'Frontend\ArticleController@callback','as' => 'callback']);//Обработчик Обратной связи
+
 /*/Callback group route*/
 
 /*Backend group routes*/
@@ -57,6 +57,7 @@ Route::group(['prefix'=>'adminLrjfW', 'middleware' => ['auth', 'backend.init']],
 	Route::put('/categories/{type}',['uses' =>'Backend\AdminCategoriesController@update','as' => 'admin_categories_update']);//Сохранение после редактирования
 	Route::delete('/categories/{type}',['uses' =>'Backend\AdminCategoriesController@destroy','as' => 'admin_categories_delete']);//Удаление категории
 	Route::get('/categories/fileoptimize/{type?}','Backend\AdminCategoriesController@fileoptimize');
+
 	//Routes for Settings (Backend)
 	Route::get('/settings',['uses' => 'Backend\AdminSettingsController@index','as' => 'settings_index']);//Вывод списка
 	Route::get('/settings/create',['uses' => 'Backend\AdminSettingsController@create','as' => 'settings_create']);//Вывод формы создания элемента
@@ -67,23 +68,18 @@ Route::group(['prefix'=>'adminLrjfW', 'middleware' => ['auth', 'backend.init']],
 	Route::get('/settings_recovery',['uses' => 'Backend\AdminSettingsController@recovery','as' => 'settings_recovery']);//Востановление записей после удаления
 	Route::get('/settings_delete',['uses' => 'Backend\AdminSettingsController@delete','as' => 'settings_delete']);//Окончательное удаление
 
-	//Routes for Orders (Backend)
+	/*//Routes for Orders (Backend)
 	Route::get('/orders', ['uses' => 'Backend\AdminOrdersController@index', 'as' => 'orders_index']);//Вывод списка заказов
-	Route::delete('/orders/{id}', ['uses' => 'Backend\AdminOrdersController@destroy', 'as' => 'orders_delete']);//Вывод списка заказов
+	Route::delete('/orders/{id}', ['uses' => 'Backend\AdminOrdersController@destroy', 'as' => 'orders_delete']);//Вывод списка заказов*/
 
-	//Routes for Resume (Backend)
-	Route::get('/resume',['uses' => 'Backend\AdminResumeController@index','as' => 'resume_index']);//Вывод списка..
-	//Route::get('/comments/{article_id}/create','Backend\AdminResumeController@create');//Вывод формы создания элемента..
-	//Route::post('/comments/{article_id}/create','Backend\AdminResumeController@store');//Сохранение элемента
-	Route::delete('/resume/{id}',['uses' => 'Backend\AdminResumeController@destroy','as' => 'resume_delete']);//Удаление элемента
-	Route::get('/resume/{id}',['uses'=> 'Backend\AdminResumeController@show','as' => 'resume_show']);//Вывод формы редакторирование..
-	//Route::put('/comments/{article_id}/{id}','Backend\AdminResumeController@update');//Сохранение после редактирования..
+
 });
 /*/Backend group routes*/
 
 /*Frontend group routes*/
 Route::group(['middleware' => 'frontend.init'], function(){
-	Route::get('/{lang}', ['uses' => 'Frontend\ArticleController@index','as' => 'article_index']);
+	Route::get('/{lang}/{type?}', ['uses' => 'Frontend\ArticleController@index', 'as' => 'article_index']);
+	Route::get('/{lang}/{type}/{id}', ['uses' => 'Frontend\ArticleController@show', 'as' => 'article_show']);
 });
 /*Frontend group routes*/
 

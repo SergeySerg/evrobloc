@@ -1,76 +1,44 @@
 $(function(){
 
-	$(".owl-carousel").owlCarousel({
-		loop:true,
-		autoWidth:true,
-		items:4,
-		nav:true,
-		autoplay:true,
-		navText : ["",""]
-	});
-	// scroll body to 0px on click
-	$('.arrow-top').click(function () {
-		$('body,html').animate({
-			scrollTop: 0
-		}, 800);
-		return false;
-	});
-	//make interactive map
-	$("map area").hover(function () {
-		var img = $(this).attr('data-hover-img');
-		$('.map-part_red').fadeOut(0);
-		$('.' + img + '_red').fadeIn(0);
-		$('.region-block').fadeOut(0);
-		$('.region-block[data-region-type=' + img + ']').fadeIn(0);
-	});
 
-	var Parallax = {
-		/*
-		 visaType:{
-		 element: '.section-1_bg',
-		 maxBg : 140
-		 },
-		 */
-		visa:{
-			element: '.section-2_bg',
-			maxBg : 140
-		},
-		/*
-		 news:{
-		 element: '.section-3_bg',
-		 maxBg : 140
-		 }
-		 */
-	};
-
-	for(var type in Parallax){
-		var offset = $(Parallax[type].element).offset();
-		Parallax[type].minTop = offset.top - $(window).height();
-		Parallax[type].maxTop = offset.top + $(Parallax[type].element).height();
-	}
-
-
-	/*
-	 console.info('Parallax: ', Parallax);
-	 */
-
-	$(document).scroll(function () {
-
-		var currentScrollTop = $("body").scrollTop();
-
-		for(var type in Parallax){
-			if(currentScrollTop > Parallax[type].minTop
-				&& currentScrollTop < Parallax[type].maxTop){
-				koeficient = (Parallax[type].maxTop - Parallax[type].minTop)/(currentScrollTop - Parallax[type].minTop);
-				bgPosY = -(Parallax[type].maxBg/koeficient);
-				$(Parallax[type].element).css({'background-position-y' : bgPosY});
-				/*
-				 console.info('SCROLL POSITION ' + type,currentScrollTop);
-				 console.info('BG POSITION ' + type, bgPosY);
-				 */
-			}
-		}
-		//console.info($scrollValue);
-	});
-
+    /* слайдер на главной*/
+    $("#webstudio-slider").unitegallery({
+        gallery_theme: "slider",
+        gallery_width:"100%",              //gallery width
+        gallery_height:750,
+        slider_enable_text_panel: true,       //true,false - enable the text panel
+        slider_textpanel_always_on: true,      //true,false - text panel are always on, false - show only on mouseover
+        slider_textpanel_text_valign:"middle",
+        slider_textpanel_height: 750,
+        slider_textpanel_title_text_align:"center",
+        slider_textpanel_title_color:"#fffafa",        //textpanel title color. if null - take from css
+        slider_textpanel_title_font_family:"Poppins",    //textpanel title font family. if null - take from css
+        slider_textpanel_title_font_size: 22,
+        slider_textpanel_desc_text_align:"center",
+        slider_textpanel_desc_color:"#fffafa",        //textpanel title color. if null - take from css
+        slider_textpanel_desc_font_family:"Poppins",    //textpanel title font family. if null - take from css
+        slider_textpanel_desc_font_size: 44,
+        slider_enable_bullets: false,
+        slider_enable_progress_indicator: false,
+        slider_control_zoom: false,
+        slider_arrow_left_offset_hor:60,
+        slider_arrow_right_offset_hor:60,
+    });
+    /* END слайдер на главной*/
+    /* фото отеля в футере */
+    $("#webstudio-bottom-gallery").unitegallery({
+        gallery_theme: "tilesgrid",
+        gallery_width:"100%",              //gallery width   
+        grid_space_between_cols:10,
+        grid_space_between_rows:10,
+        grid_space_between_mobile:10,
+        tile_enable_border:false,
+        tile_enable_shadow:false,
+        grid_padding:0,
+        tile_width: 112,
+        tile_height: 112,
+        grid_num_rows:2,
+    });
+    /* END фото отеля в футере */
+    
 });

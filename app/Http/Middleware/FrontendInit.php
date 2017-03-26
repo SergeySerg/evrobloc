@@ -30,8 +30,8 @@ class FrontendInit {
 		if (!$currentLang){
 			abort('404');
 		}
-		//Get SEO field
-		$meta = view()->share('meta', Article::where('name', '=', 'meta.main')->first());
+		/*//Get SEO field
+		$meta = view()->share('meta', Article::where('name', '=', 'meta.main')->first());*/
 
 		// Locale setting
 		App::setLocale($request->lang);
@@ -41,7 +41,7 @@ class FrontendInit {
 		// Share to views global template variables
 		view()->share('langs', Lang::all());
 		view()->share('texts', $texts->init());
-		view()->share('meta', $meta);
+		/*view()->share('meta', $meta);*/
 		//dd($meta);
 		view()->share('version', config('app.version'));
 

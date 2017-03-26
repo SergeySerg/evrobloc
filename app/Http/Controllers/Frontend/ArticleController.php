@@ -25,41 +25,47 @@ class ArticleController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index($lang)
+	public function index($lang, $type = 'main')
 	{
-		//get Visas from articles table
-		$visas = Category::where('link','visas')->first()
-			->articles()
-			->activearticles() // use scopeActiveArticles in Article Model
-			->get();
-		//get Visas Center from articles table
-		$visas_center = Category::where('link','visas_center')->first()
-			->articles()
-			->activearticles() // use scopeActiveArticles in Article Model
-			->get();
-		//get News from articles table
-		$news = Category::where('link','news')->first()
-			->articles()
-			->sortdatearticles() // use scopeSortDateArticles in Article Model by date=>desc
-			->get();
-		//get Services from articles table
-		$services = Category::where('link','services')->first()
-			->articles()
-			->activearticles() // use scopeActiveArticles in Article Model
-			->get();
-		//get Advices from articles table
-		$advices = Category::where('link','advices')->first()
-			->articles()
-			->activearticles() // use scopeActiveArticles in Article Model
-			->get();
-		//dump($news);
-		return view('ws-app', [
-			'visas' => $visas,
-			'visas_center' => $visas_center,
-			'news' => $news,
-			'services' => $services,
-			'advices'=> $advices
-		]);
+		$product = null;
+		$cooperation = null;
+		$news = null;
+		$about_us = null;
+		$contact = null;
+		$slides = null;
+		;
+		switch($type){
+			case 'main':
+				$slides = Category::where('link','slider')
+					->first()
+					->articles()
+					->where('active', 1)
+					->get()
+					->sortByDesc("priority");
+				$categories = Category::where('parent_id',0)
+					->where('active', 1)
+					->get();
+				$category = Category::where("link","=",$type)->first();
+				$category_parent = $category->category_parent()->first();
+				$category_children = $category->category_children()->get();
+				break;
+			case 'company':
+				break;
+			case 'news':
+				break;
+			case 'work':
+				break;
+			case 'gallery':
+				break;
+			case 'slider':
+				break;
+		}
+
+		/*$meta = view()->share('meta', Article::where('name', '=', 'meta.'.$type)->first());*/
+
+
+		return view('frontend.'.$type)
+			->with(compact('slides', 'categories', 'category_parent', 'category_children'));
 	}
 
 	/**

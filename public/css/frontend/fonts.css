@@ -1,33 +1,5 @@
 @font-face {
-  font-family: "AvantGardeC";
-  font-style: normal;
-  font-weight: normal; }
-
-@font-face {
-  font-family: "AvantGardeCBold";
-  font-style: normal;
-  font-weight: normal; }
-
-@font-face {
-  font-family: "BebasNeueCyrillic";
+  font-family: "Poppins";
   font-style: normal;
   font-weight: normal;
-  src: url("../../fonts/frontend/BebasNeueCyrillic.ttf") format("truetype"); }
-
-@font-face {
-  font-family: "MagistralBlack";
-  font-style: normal;
-  font-weight: normal;
-  src: url("../../fonts/frontend/MagistralBlack.TTF") format("truetype"); }
-
-@font-face {
-  font-family: "MagistralBold";
-  font-style: normal;
-  font-weight: normal;
-  src: url("../../fonts/frontend/MagistralBold.TTF") format("truetype"); }
-
-@font-face {
-  font-family: "Magistral";
-  font-style: normal;
-  font-weight: normal;
-  src: url("../../fonts/frontend/Magistral.TTF") format("truetype"); }
+  src: url("../../fonts/frontend/fonts/Poppins/Poppins.ttf") format("truetype"); }

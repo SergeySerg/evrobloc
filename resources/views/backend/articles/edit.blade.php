@@ -35,13 +35,7 @@
 
     <div class="page-content">
         <div class="page-header position-relative">
-            <h1>
-                @if (isset($admin_article))
-                    Редагувати
-                @else
-                    Додати
-                @endif
-            </h1>
+            <h1>{{ isset($admin_article) ? "Редагувати" : 'Додати' }}</h1>
         </div><!--/.page-header-->
 
         <div class="row-fluid">
@@ -126,7 +120,7 @@
                     @endif
                     @if($admin_category->hasField('img'))
                         <div class="control-group">
-                           {{-- <label class="control-label" for="id-date-picker-1">Картинка</label>--}}
+                           <label class="control-label" for="id-date-picker-1">Картинка</label>
                             {{--<div class="controls">
                                 <div class="row-fluid input-append">
                                     <input class="span2 date-picker" name="date" id="id-date-picker-1" type="text" data-date-format="dd-mm-yyyy" @if(isset($admin_article)) value='{{date('d-m-Y',strtotime($admin_article->date)) }}' @endif/>
