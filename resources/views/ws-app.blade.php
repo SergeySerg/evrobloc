@@ -45,7 +45,7 @@
 		<div class="top-section">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-10">
+					<div class="col-md-9">
 						<div class="top-section_text">
 							<i class="fa fa-map-marker" aria-hidden="true"></i>
 							{{  $texts->get('address') }}
@@ -61,14 +61,9 @@
 					</div>
 					<div class="col-md-2">
 						<div class="header_social clearfix">
-							<a href="{{  $texts->get('social_facebook') }}" target="_blank">
+							<a href="{{  $texts->get('social_instagram') }}" target="_blank">
 								<div>
-									<i class="fa fa-facebook"></i>
-								</div>
-							</a>
-							<a href="{{  $texts->get('social_twitter') }}" target="_blank">
-								<div>
-									<i class="fa fa-twitter"></i>
+									<i class="fa fa-instagram"></i>
 								</div>
 							</a>
 							<a href="{{  $texts->get('social_vk') }}" target="_blank">
@@ -76,7 +71,26 @@
 									<i class="fa fa-vk" aria-hidden="true"></i>
 								</div>
 							</a>
+							<a href="{{  $texts->get('social_facebook') }}" target="_blank">
+								<div>
+									<i class="fa fa-facebook"></i>
+								</div>
+							</a>
+							<a href="{{  $texts->get('social_odnoklassniki') }}" target="_blank">
+								<div>
+									<i class="fa fa-odnoklassniki"></i>
+								</div>
+							</a>
 						</div>
+					</div>
+					<div class="col-md-1">
+						<ul class="lang">
+
+							<li @if(App::getLocale() == 'ua') class="active"@endif><a href="{{str_replace(url(App::getLocale()), url('ua'), Request::url())}}">ua</a></li>
+							<li @if(App::getLocale() == 'ru') class="active"@endif><a href="{{str_replace(url(App::getLocale()), url('ru'), Request::url())}}">ru</a></li>
+
+						</ul>
+
 					</div>
 				</div>
 			</div>
@@ -137,18 +151,20 @@
 					<ul class="footer-contact">
 						<li class="footer-contact_item clearfix">
 							<i class="fa fa-envelope-o"></i><span>{{ $texts->get('mail') }}</span></li>
-						<li class="footer-contact_item clearfix"><i class="fa fa-phone"></i><span>{{ $texts->get('telephone_one') }} або {{ $texts->get('telephone_two') }}</span></li>
+						<li class="footer-contact_item clearfix"><i class="fa fa-phone"></i><span>{{ $texts->get('telephone_one') }} або {{ $texts->get('telephone_two') }} {{ $texts->get('telephone_three') }}</span></li>
 						<li class="footer-contact_item clearfix"><i class="fa fa-map-marker"></i><span> {{ $texts->get('address') }}</span></li>
 						<li class="footer-contact_item clearfix">
-							<a href="{{  $texts->get('social_facebook') }}" target="_blank">
-								<i class="fa fa-facebook"></i>
-							</a>
-							<a href="{{  $texts->get('social_twitter') }}" target="_blank">
-								<i class="fa fa-twitter"></i>
+							<a href="{{  $texts->get('social_instagram') }}" target="_blank">
+								<i class="fa fa-instagram"></i>
 							</a>
 							<a href="{{  $texts->get('social_vk') }}" target="_blank">
 								<i class="fa fa-vk" aria-hidden="true"></i>
 							</a>
+							<a href="{{  $texts->get('social_facebook') }}" target="_blank">
+								<i class="fa fa-facebook"></i>
+							</a>
+							<a href="{{  $texts->get('social_odnoklassniki') }}" target="_blank">
+								<i class="fa fa-odnoklassniki"></i>
 							</a>
 						</li>
 					</ul>
@@ -175,7 +191,7 @@
 	<script src="{{ asset('/libs/jquery/dist/jquery.min.js') }}"></script>
 <script src="{{ asset('/libs/bootstrap/dist/js/bootstrap.min.js') }}"></script>
 
-<script src="{{ asset('/js/common.js') }}"></script>
+<script src="{{ asset('/js/frontend/common.js') }}"></script>
 <script src="{{ asset('/libs/owl-carousel/owl.carousel.min.js') }}"></script>
 <script src="http://azmind.com/demo/andia-agency/v2-1/assets/js/wow.min.js" type="application/javascript"></script>
 <script src="{{ asset('/libs/unitegallery/dist/themes/default/ug-theme-default.js') }}"></script>
