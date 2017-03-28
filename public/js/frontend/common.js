@@ -42,9 +42,10 @@ $(function(){
     });
     /* END фото отеля в футере */
     $('.menu_item:nth-child(2) a').on('click', function (e) {
-        if ($(document).width() <= 480)
+        if ($(document).width() <= 480) {
             $('.menu_item:nth-child(2) .sub-menu').toggleClass('active');
             $('.menu_item:nth-child(2) a i').toggleClass('fa-angle-down').toggleClass('fa-angle-up');
+        }
         e.preventDefault();
     });
     $('.menu_item:nth-child(2)').hover(
