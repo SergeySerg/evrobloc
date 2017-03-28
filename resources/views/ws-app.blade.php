@@ -22,6 +22,7 @@
 	<link rel="apple-touch-icon" href="{{ asset('/img/favicon/apple-touch-icon.png') }}">
 	<link rel="apple-touch-icon" sizes="72x72" href="{{ asset('img/favicon/apple-touch-icon-72x72.png') }}">
 	<link rel="apple-touch-icon" sizes="114x114" href="{{ asset('/img/favicon/apple-touch-icon-114x114.png') }}">
+
 	{{-- CSS --}}
 
 	<link rel="stylesheet" href="{{ asset('/libs/normalize.css/normalize.css') }}">
@@ -133,7 +134,7 @@
 					</div>
 				</div>
 				<div class="col-md-4">
-					<h4 class="footer-title">Контактна інформація</h4>
+					<h4 class="footer-title">{{ trans('contact') }}</h4>
 					<ul class="footer-contact">
 						<li class="footer-contact_item clearfix">
 							<i class="fa fa-envelope-o"></i><span>{{ $texts->get('mail') }}</span></li>
@@ -172,16 +173,16 @@
 </script>
 {{--Файл переводов--}}
 {{-- JS --}}
-	<script src="{{ asset('/libs/jquery/dist/jquery.min.js') }}"></script>
+<script src="{{ asset('/libs/jquery/dist/jquery.min.js') }}"></script>
 <script src="{{ asset('/libs/bootstrap/dist/js/bootstrap.min.js') }}"></script>
-
-<script src="{{ asset('/js/common.js') }}"></script>
+<script src="{{ asset('/libs/unitegallery/dist/js/unitegallery.js') }}"></script>
+<script src="{{ asset('/js/frontend/common.js') }}"></script>
 <script src="{{ asset('/libs/owl-carousel/owl.carousel.min.js') }}"></script>
 <script src="http://azmind.com/demo/andia-agency/v2-1/assets/js/wow.min.js" type="application/javascript"></script>
 <script src="{{ asset('/libs/unitegallery/dist/themes/default/ug-theme-default.js') }}"></script>
 <script src="{{ asset('/libs/unitegallery/dist/themes/slider/ug-theme-slider.js') }}"></script>
 <script src="{{ asset('/libs/unitegallery/dist/themes/tilesgrid/ug-theme-tilesgrid.js') }}"></script>
-<script src="{{ asset('/libs/unitegallery/dist/js/unitegallery.js') }}"></script>
+
 <script src="{{ asset('/js/plugins/sweetalert.min.js') }}"></script>
 <script>
 	new WOW().init();

@@ -24,7 +24,7 @@ class FrontendInit {
 	public function handle($request, Closure $next)
 	{
 		// Get current lang object from db
-		$currentLang = Lang::where('lang',"=", $request->lang)
+		$currentLang = Lang::where('lang', $request->lang)
 			->first();
 
 		if (!$currentLang){
@@ -36,6 +36,7 @@ class FrontendInit {
 		// Locale setting
 		App::setLocale($request->lang);
 
+		//create new object Text
 		$texts = new Text();
 
 		// Share to views global template variables
@@ -44,6 +45,7 @@ class FrontendInit {
 		/*view()->share('meta', $meta);*/
 		//dd($meta);
 		view()->share('version', config('app.version'));
+
 
 		return $next($request);
 	}

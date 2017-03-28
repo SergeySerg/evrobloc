@@ -33,7 +33,6 @@ class ArticleController extends Controller {
 		$about_us = null;
 		$contact = null;
 		$slides = null;
-		;
 		switch($type){
 			case 'main':
 				$slides = Category::where('link','slider')
@@ -64,7 +63,7 @@ class ArticleController extends Controller {
 		/*$meta = view()->share('meta', Article::where('name', '=', 'meta.'.$type)->first());*/
 
 
-		return view('frontend.'.$type)
+		return view('ws-app')
 			->with(compact('slides', 'categories', 'category_parent', 'category_children'));
 	}
 
