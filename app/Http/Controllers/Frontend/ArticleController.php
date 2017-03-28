@@ -27,7 +27,7 @@ class ArticleController extends Controller {
 	 */
 	public function index($lang, $type = 'main')
 	{
-		$product = null;
+		/*$product = null;
 		$cooperation = null;
 		$news = null;
 		$about_us = null;
@@ -42,12 +42,7 @@ class ArticleController extends Controller {
 					->where('active', 1)
 					->get()
 					->sortByDesc("priority");
-				$categories = Category::where('parent_id',0)
-					->where('active', 1)
-					->get();
-				$category = Category::where("link","=",$type)->first();
-				$category_parent = $category->category_parent()->first();
-				$category_children = $category->category_children()->get();
+
 				break;
 			case 'company':
 				break;
@@ -60,12 +55,25 @@ class ArticleController extends Controller {
 			case 'slider':
 				break;
 		}
-
+*/
 		/*$meta = view()->share('meta', Article::where('name', '=', 'meta.'.$type)->first());*/
 
 
-		return view('frontend.'.$type)
-			->with(compact('slides', 'categories', 'category_parent', 'category_children'));
+		return view('frontend.'. $type);
+			/*->with(compact('slides'));*/
+	}
+	public function products($lang, $type)
+	{
+
+		$product_category = Category::where('link', $type)
+		->first();
+		$products = $product_category
+		->articles()
+		->where('active', '1')
+		->orderBy("priority", 'desc')
+		->paginate(5);
+		return view('frontend.product')
+			->with(compact('products', 'product_category'));
 	}
 
 	/**

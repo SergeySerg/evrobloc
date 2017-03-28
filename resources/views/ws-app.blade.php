@@ -3,17 +3,17 @@
 <head>
 	<meta charset="utf-8">
 	<title>
-		{{--@if($meta ->getTranslate('meta_title'))
-			{{ $meta ->getTranslate('meta_title') }}
+		@if(isset($category))
+			{{ $category ->getTranslate('meta_title') }}
 		@else
-			Візи в Польщу
-		@endif--}}
+			Будматеріали
+		@endif
 	</title>
 
-	{{--@if(isset($meta))
-		<meta name="description" content="{{ $meta ->getTranslate('meta_description') }}">
-		<meta name="keywords" content="{{ $meta ->getTranslate('meta_keywords') }}">
-	@endif--}}
+	@if(isset($category))
+		<meta name="description" content="{{ $category ->getTranslate('meta_description') }}">
+		<meta name="keywords" content="{{ $category ->getTranslate('meta_keywords') }}">
+	@endif
 
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -108,7 +108,7 @@
 								@if($category->category_children->count())
 									<ul class="sub-menu">
 										@foreach($category->category_children as $category_children)
-											<li class="sub-menu_item"><a href="/{{ App::getLocale() }}/{{ $category_children->link }}">{{ $category_children->getTranslate('title') }}</a></li>
+											<li class="sub-menu_item"><a href="/{{ App::getLocale() }}/products/{{ $category_children->link }}">{{ $category_children->getTranslate('title') }}</a></li>
 										@endforeach
 									</ul>
 								@endif
@@ -130,19 +130,15 @@
 					<h4 class="footer-title">Продукція</h4>
 					<div id="webstudio-bottom-gallery" style="display:none;">
 
-						@foreach($slides as $slide)
-
-							@if(count($slide->getImages()) > 0)
-
-								<img alt="{{$slide->getTranslate('title')}}"
-									 src="/{{$slide->getImages()[0]['full']}}"
-									 data-image="/{{$slide->getImages()[0]['full']}}"
-									 id="img-{{$slide->id}}"
-									 data-description=" {{$slide->getTranslate('description')}}">
-
-							@endif
-
-						@endforeach
+						@forelse( $slides as $key => $slide)
+							<img alt="{{ $slide->getTranslate('title') }}"
+								 src="/{{ $slide->img }}"
+								 data-image="/{{ $slide->img }}"
+								 id="img-{{ $key }}"
+								 data-description=" {{$slide->getTranslate('description')}}">
+						@empty
+							Нет картинки
+						@endforelse
 
 					</div>
 				</div>
