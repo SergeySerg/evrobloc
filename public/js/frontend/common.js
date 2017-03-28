@@ -41,7 +41,7 @@ $(function(){
         grid_num_rows:2,
     });
     /* END фото отеля в футере */
-    $('.menu_item:nth-child(2) a').on('click', function (e) {
+    $('.menu_item:nth-child(2) > a').on('click', function (e) {
         if ($(document).width() <= 480) {
             $('.menu_item:nth-child(2) .sub-menu').toggleClass('active');
             $('.menu_item:nth-child(2) a i').toggleClass('fa-angle-down').toggleClass('fa-angle-up');
@@ -56,8 +56,10 @@ $(function(){
             }
         },
         function () {
-            $('.menu_item > .sub-menu').slideUp();
-            $('.menu_item:nth-child(2) a i').removeClass('fa-angle-up').addClass('fa-angle-down');
+            if ($(document).width() > 480) {
+                $('.menu_item > .sub-menu').slideUp();
+                $('.menu_item:nth-child(2) a i').removeClass('fa-angle-up').addClass('fa-angle-down');
+            }
         }
     );
 });

@@ -33,7 +33,9 @@
                 </div>
             @empty
                 <div class="row">
-                    Немає товарів в данні категорії
+                    <div class="col-md-12">
+                        {{ trans('base.no_product') }}
+                    </div>
                 </div>
             @endforelse
         </div>
