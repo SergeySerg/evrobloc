@@ -2,14 +2,15 @@ $(function(){
 
 
     /* слайдер на главной*/
+    var sliderHeight = ($(document).width() > 700) ? 650 : 400;
     $("#webstudio-slider").unitegallery({
         gallery_theme: "slider",
         gallery_width:"100%",              //gallery width
-        gallery_height:750,
+        gallery_height:sliderHeight,
         slider_enable_text_panel: true,       //true,false - enable the text panel
         slider_textpanel_always_on: true,      //true,false - text panel are always on, false - show only on mouseover
         slider_textpanel_text_valign:"middle",
-        slider_textpanel_height: 750,
+        slider_textpanel_height: sliderHeight,
         slider_textpanel_title_text_align:"center",
         slider_textpanel_title_color:"#fffafa",        //textpanel title color. if null - take from css
         slider_textpanel_title_font_family:"Poppins",    //textpanel title font family. if null - take from css
@@ -40,5 +41,22 @@ $(function(){
         grid_num_rows:2,
     });
     /* END фото отеля в футере */
-    
+    $('.menu_item:nth-child(2) a').on('click', function (e) {
+        if ($(document).width() <= 480)
+            $('.menu_item:nth-child(2) .sub-menu').toggleClass('active');
+            $('.menu_item:nth-child(2) a i').toggleClass('fa-angle-down').toggleClass('fa-angle-up');
+        e.preventDefault();
+    });
+    $('.menu_item:nth-child(2)').hover(
+        function () {
+            if ($(document).width() > 480){
+                $('.menu_item > .sub-menu').slideDown();
+                $('.menu_item:nth-child(2) a i').removeClass('fa-angle-down').addClass('fa-angle-up');
+            }
+        },
+        function () {
+            $('.menu_item > .sub-menu').slideUp();
+            $('.menu_item:nth-child(2) a i').removeClass('fa-angle-up').addClass('fa-angle-down');
+        }
+    );
 });
