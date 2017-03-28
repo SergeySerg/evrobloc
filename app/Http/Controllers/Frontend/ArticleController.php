@@ -47,6 +47,7 @@ class ArticleController extends Controller {
 				$category = Category::where("link","=",$type)->first();
 				$category_parent = $category->category_parent()->first();
 				$category_children = $category->category_children()->get();
+				dd()
 				break;
 			case 'company':
 				break;
@@ -63,8 +64,8 @@ class ArticleController extends Controller {
 		/*$meta = view()->share('meta', Article::where('name', '=', 'meta.'.$type)->first());*/
 
 
-		return view('ws-app')
-			->with(compact('slides', 'categories', 'category_parent', 'category_children'));
+		return view('frontend.' . $type)
+			->with(compact('slides', 'categories','category', 'category_parent', 'category_children'));
 	}
 
 	/**

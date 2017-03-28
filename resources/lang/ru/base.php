@@ -12,14 +12,8 @@ return [
 	| you want to customize your views to better match your application.
 	|
 	*/
-	'social' => 'в соцсетях',
-	'check_visa' => 'Заказать визу',
-	'info' => 'дополнительная информация',
-	'registry_visa_center' => 'регистрация в визовые центры',
-	'registry' => 'Регистрация',
-	'news' => 'новости',
-	'news_soc' => 'следите за нашими новостями в социальных сетях:',
 	'more' => 'Подробнее',
+<<<<<<< HEAD
 	'subscribe_news' => 'подписаться на новости',
 	'insurance' => 'Страховка',
 	'order_insurance' => 'Заказать страховку',
@@ -30,15 +24,16 @@ return [
 	'want' => 'как нас найти?',
 	'contact' => 'Контактная информация',
 	'put_name' => 'Введите Ваше имя:',
+=======
+	'address' => 'Адрес',
+	'want' => 'Как нас найти?',
+	'contact' => 'Контакты',
+	'callback' => 'Обратная связь',
+	'put_name' => 'Имя',
+>>>>>>> 0a6d58455a1e1b9f25c7f907f2186cd864937852
 	'put_email' => 'Введите Ваш e-mail:',
-	'put_phone' => 'Введите Ваш телефон:',
+	'put_phone' => 'Телефон',
+	'phones' => 'Телефоны',
 	'message' => 'Сообщение',
 	'send' => 'Отправить',
-	'days' => 'дней',
-	"from" => 'от',
-	/* Script Contact*/
-	'success_send_contact' => 'Ваша заявка успешно отправлена !',
-	'error_send_contact' => 'Возникла ошибка при передачи заявки!',
-	/* /Script Contact*/
-
 ];
