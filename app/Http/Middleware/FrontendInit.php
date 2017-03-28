@@ -38,11 +38,31 @@ class FrontendInit {
 
 		//create new object Text
 		$texts = new Text();
+		if(is_null($request->type)){
+			$request->type = 'main';
+
+		}
+		$categories = Category::where('parent_id',0)
+			->where('active', 1)
+			->get();
+		$category = Category::where("link",$request->type)->first();
+		$category_parent = $category->category_parent()->first();
+		$category_children = $category->category_children()->get();
+		$slides = Category::where('link','slider')
+			->first()
+			->articles()
+			->where('active', 1)
+			->get()
+			->sortByDesc("priority");
 
 		// Share to views global template variables
 		view()->share('langs', Lang::all());
 		view()->share('texts', $texts->init());
-		/*view()->share('meta', $meta);*/
+		view()->share('categories', $categories);
+		view()->share('category', $category);
+		view()->share('category_parent', $category_parent);
+		view()->share('category_children', $category_children);
+		view()->share('slides', $slides);
 		//dd($meta);
 		view()->share('version', config('app.version'));
 

@@ -3,7 +3,16 @@
     <div class="slider">
 
         <div id="webstudio-slider" style="display:none;">
-            @foreach($slides as $slide)
+            @forelse( $slides as $key => $slide)
+                <img alt="{{ $slide->getTranslate('title') }}"
+                     src="/{{ $slide->img }}"
+                     data-image="/{{ $slide->img }}"
+                     id="img-{{ $key }}"
+                     data-description=" {{$slide->getTranslate('description')}}">
+                @empty
+                Нет картинки
+            @endforelse
+           {{-- @foreach($slides as $slide)
 
                 @if(count($slide->getImages()) > 0)
 
@@ -16,6 +25,11 @@
                 @endif
 
             @endforeach
+<<<<<<< HEAD
+=======
+--}}
+
+>>>>>>> Make_frontend
 
         </div>
 

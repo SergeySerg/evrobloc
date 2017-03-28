@@ -195,6 +195,7 @@ class AdminArticlesController extends Controller {
 		foreach($langs as $lang){
 			$this->validate($request, [
 				'title_'.$lang['lang'] => 'required|max:255',
+				'img' => 'mimes:jpeg,jpg,png,bmp,gif|max:5000'
 			]);
 		}
 		$article = Article::where('id', $id)->first();

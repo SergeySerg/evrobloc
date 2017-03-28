@@ -79,6 +79,7 @@ Route::group(['prefix'=>'adminLrjfW', 'middleware' => ['auth', 'backend.init']],
 /*Frontend group routes*/
 Route::group(['middleware' => 'frontend.init'], function(){
 	Route::get('/{lang}/{type?}', ['uses' => 'Frontend\ArticleController@index', 'as' => 'article_index']);
+	Route::get('/{lang}/products/{type?}', ['uses' => 'Frontend\ArticleController@products', 'as' => 'article_product']);
 	Route::get('/{lang}/{type}/{id}', ['uses' => 'Frontend\ArticleController@show', 'as' => 'article_show']);
 });
 /*Frontend group routes*/
