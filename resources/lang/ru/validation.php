@@ -55,7 +55,7 @@ return [
 		"array"   => "The :attribute must have at least :min items.",
 	],
 	"not_in"               => "The selected :attribute is invalid.",
-	"numeric"              => "The :attribute must be a number.",
+	"numeric"              => ":attribute должен состоять из чисел.",
 	"regex"                => "The :attribute format is invalid.",
 	"required"             => "Поле :attribute обязательно для заполнения",
 	"required_if"          => "The :attribute field is required when :other is :value.",
@@ -103,8 +103,9 @@ return [
 	*/
 
 	'attributes' => [
-		'name' => 'Ваше имя',
-		'phone' => 'Ваш телефон'
+		'name' => 'Имя',
+		'phone' => 'Телефон',
+		'comment' => 'Сообщение'
 	],
 
 ];

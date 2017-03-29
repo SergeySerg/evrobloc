@@ -26,4 +26,12 @@ return [
 	'phones' => 'Телефоны',
 	'message' => 'Сообщение',
 	'send' => 'Отправить',
+	'share' => 'Поделиться',
+	'last_news' => 'Последние новости',
+	'no_news' => 'Нет ни одной новости',
+	'all_news' => 'Все новости',
+	/* Script Contact*/
+	'success_send_contact' => 'Ваша заявка успешно отправлена !',
+	'error_send_contact' => 'Возникла ошибка при передачи заявки!',
+	/* /Script Contact*/
 ];

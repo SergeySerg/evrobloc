@@ -62,7 +62,14 @@ class ArticleController extends Controller {
 		return view('frontend.'. $type);
 			/*->with(compact('slides'));*/
 	}
-	public function products($lang, $type)
+
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function show($lang, $type)
 	{
 
 		$product_category = Category::where('link', $type)
@@ -72,8 +79,21 @@ class ArticleController extends Controller {
 		->where('active', '1')
 		->orderBy("priority", 'desc')
 		->paginate(5);
-		return view('frontend.product')
+		return view('frontend.products')
 			->with(compact('products', 'product_category'));
+	}
+
+	/**
+	 * Show the form for creating a new resource.
+	 *
+	 * @return Response
+	 */
+
+	public function show_new($lang, $type, $id)
+	{
+		$new = Article::where('id',$id)->first();
+		return view('frontend.new')
+			->with(compact('new'));
 	}
 
 	/**
@@ -95,17 +115,6 @@ class ArticleController extends Controller {
 	public function store()
 	{
 		//
-	}
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show( $id)
-	{
-	//
 	}
 
 	/**
@@ -149,7 +158,8 @@ class ArticleController extends Controller {
 			/*make rules for validation*/
 			$rules = [
 				'name' => 'required|max:50',
-				'phone' => 'required|max:15',
+				'phone' => 'required|numeric',
+				'comment' => 'required|max:600'
 			];
 
 			/*validation [] according to rules*/
@@ -162,57 +172,16 @@ class ArticleController extends Controller {
 					'message' => $validator->messages()->first()
 				));
 			}
-
-			/*create new item in DB*/
-			Order::create($all);
 
 			//Send item on admin email address
 			Mail::send('emails.contact', $all, function($message){
-				$email = $this->getEmail();
-				$message->to($email, 'Example')->subject('Повідомлення про зворотній зв\'язок з сайту "Візи в Польщу" ');
+				$email = getSetting('config.email');
+				$message->to($email, 'Будматеріали')->subject('Повідомлення про зворотній зв\'язок з сайту "Будматеріали" ');
 			});
 			return response()->json([
 				'success' => 'true'
 			]);
 		}
 	}
-	public function callback(Request $request)
-	{
-		if ($request->isMethod('post')) {
-			/*get [] from request*/
-			$all = $request->all();
 
-			/*make rules for validation*/
-			$rules = [
-				'name' => 'required|max:50',
-				'email' => 'required|email',
-				'text' => 'required|max:350',
-			];
-
-			/*validation [] according to rules*/
-			$validator = Validator::make($all, $rules);
-
-			/*send error message after validation*/
-			if ($validator->fails()) {
-				return response()->json(array(
-					'success' => false,
-					'message' => $validator->messages()->first()
-				));
-			}
-			//Send item on admin email address
-			Mail::send('emails.callback', $all, function ($message) {
-				$email = $this->getEmail();
-				$message->to($email, 'Example')->subject('Повідомлення про зворотній зв\'язок з сайту "Візи в Польщу" ');
-			});
-			return response()->json([
-				'success' => 'true'
-			]);
-		}
-	}
-	/*get  var email from DB TEXT for send email*/
-	private function getEmail(){
-		$email = Text::where("name","=","config.email")->first();
-		$email = $email['description'];
-		return $email;
-	}
 }

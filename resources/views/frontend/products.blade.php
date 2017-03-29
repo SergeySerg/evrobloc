@@ -21,7 +21,7 @@
                         <h2 class="product-name">{{ $product->getTranslate('title') }}</h2>
                         <div class="product-description">{!! $product->getTranslate('description') !!}</div>
                         <div class="sharing-wrap clearfix">
-                            <div class="sharing-name">Поділитись</div>
+                            <div class="sharing-name">{{ trans('base.share') }}</div>
                             <div class="sharing-items">
                                 <i class="fa fa-facebook"></i>
                                 <i class="fa fa-twitter"></i>

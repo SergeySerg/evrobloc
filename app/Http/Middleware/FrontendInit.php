@@ -30,16 +30,12 @@ class FrontendInit {
 		if (!$currentLang){
 			abort('404');
 		}
-		/*//Get SEO field
-		$meta = view()->share('meta', Article::where('name', '=', 'meta.main')->first());*/
-
 		// Locale setting
 		App::setLocale($request->lang);
 
 		$texts = new Text();
 		if(is_null($request->type)){
 			$request->type = 'main';
-
 		}
 		$categories = Category::where('parent_id',0)
 			->where('active', 1)
@@ -53,6 +49,19 @@ class FrontendInit {
 			->where('active', 1)
 			->get()
 			->sortByDesc("priority");
+		$news = Category::where('link','news')
+			->first()
+			->articles()
+			->where('active','=', '1')
+			->orderBy("priority", 'desc')
+			->paginate(4);
+		$last_news = Category::where('link','=', 'news')
+			->first()
+			->articles()
+			->where('active','=', '1')
+			->orderBy("priority", 'desc')
+			->take(5)
+			->get();
 
 		// Share to views global template variables
 		view()->share('langs', Lang::all());
@@ -62,6 +71,8 @@ class FrontendInit {
 		view()->share('category_parent', $category_parent);
 		view()->share('category_children', $category_children);
 		view()->share('slides', $slides);
+		view()->share('news', $news);
+		view()->share('last_news', $last_news);
 		//dd($meta);
 		view()->share('version', config('app.version'));
 

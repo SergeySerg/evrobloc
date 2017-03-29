@@ -55,7 +55,7 @@ return [
 		"array"   => "The :attribute must have at least :min items.",
 	],
 	"not_in"               => "The selected :attribute is invalid.",
-	"numeric"              => "The :attribute must be a number.",
+	"numeric"              => " :attribute повинен складатися з чисел.",
 	"regex"                => "The :attribute format is invalid.",
 	"required"             => "Поле :attribute об'язкове для заповнення.",
 	"required_if"          => "The :attribute field is required when :other is :value.",
@@ -103,11 +103,9 @@ return [
 	*/
 
 	'attributes' => [
-		'title' => 'Назва',
-		'description' => 'Значення',
-		'name' => 'Альтернативна назва',
-		'phone' => 'Ваш телефон',
-		'text' => 'Повідомлення',
+		'name' => 'Ім\'я',
+		'phone' => 'Телефон',
+		'comment' => 'Повідомлення'
 	],
 
 ];

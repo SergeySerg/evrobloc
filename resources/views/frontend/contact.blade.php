@@ -15,7 +15,7 @@
 
                 <div class="col-md-9">
 
-                    <form action="" class="row callback-form">
+                    <form action="" id="callback"  class="row callback-form">
 
                         <div class="col-md-6">
                             <input id="name" name="name" placeholder="{{ trans('base.put_name') }}" required type="text">
@@ -28,9 +28,9 @@
                         <div class="col-md-12">
                             <textarea name="comment" id="comment" placeholder="{{ trans('base.message') }}" rows="4"></textarea> <br>
                         </div>
-
+                        <input type="hidden" name="_token" value="{{csrf_token()}}"/>
                         <div class="col-md-12">
-                            <button>{{ trans('base.send') }}</button>
+                            <button id="submit-send">{{ trans('base.send') }}</button>
                         </div>
                     </form>
 

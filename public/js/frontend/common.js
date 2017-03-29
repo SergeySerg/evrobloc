@@ -62,4 +62,37 @@ $(function(){
             }
         }
     );
+    //отправка формы обратной связи
+
+        $('#submit-send').on('click', function(event){
+            $('#submit-send').attr('disabled', true);
+            var data = $('form#callback').serialize();
+            $.ajax({
+                url: 'contact',
+                method: "POST",
+                data: data,
+                dataType : "json",
+                success: function(data){
+                    //console.info('Server response: ', data);
+                    if(data.success){
+                        swal(trans['base.success'], "", "success");
+                        jQuery("#popup").trigger("reset");
+                        $('.popup-callback, #overlay').hide();
+                        $("#submit-send").attr('disabled', false);
+                    }
+                    else{
+                        swal(trans['base.error'], data.message, "error");
+                        $("#submit-send").attr('disabled', false);
+                    }
+                },
+                error:function(data){
+                    swal(trans['base.error']);
+                    $("#submit-send").attr('disabled', false);
+                    //  jQuery("#resume-form").trigger("reset");
+                }
+
+            },"json");
+            event.preventDefault();
+        });
+
 });
