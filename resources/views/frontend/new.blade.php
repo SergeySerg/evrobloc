@@ -23,8 +23,8 @@
                         @forelse($last_news as $last_new)
                             <a href="/{{ App::getLocale() }}/news/{{ $last_new->id }}" class="latest-news-wrap clearfix">
                                 <div class="latest-news-img_block" style="background-image: url('/{{ $last_new->img }}')"></div>
-                                <h4 class="news_title">{{ $last_new->getTranslate('title') }}</h4>
-                                <p class="latest-news_short-description">{!! $last_new->getTranslate('short_description') !!}</p>
+                                <h4 class="news_title">{{ str_limit($last_new->getTranslate('title'),23,'...') }}</h4>
+                                <p class="latest-news_short-description">{!! str_limit($last_new->getTranslate('short_description'),128,'...') !!}</p>
                             </a>
                     @empty
                         {{ trans('base.no_news') }}

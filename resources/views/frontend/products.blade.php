@@ -10,11 +10,11 @@
         </div>
     </div>
 
-    <div class="product-wrap">
-        <div class="container">
-            @forelse($products as $product)
+    @forelse($products as $product)
+        <div class="product-wrap">
+            <div class="container">
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-4 center">
                         <img src="/{{ $product->img }}" alt="{{ $product->getTranslate('title') }}" class="product-img">
                     </div>
                     <div class="col-md-8">
@@ -23,21 +23,31 @@
                         <div class="sharing-wrap clearfix">
                             <div class="sharing-name">{{ trans('base.share') }}</div>
                             <div class="sharing-items">
-                                <i class="fa fa-facebook"></i>
-                                <i class="fa fa-twitter"></i>
-                                <i class="fa fa-vk"></i>
+                                <div class="share42init"
+                                     data-image="http://evroblok.loc/{{ $product->img }}"
+                                     data-url="{{Request::fullUrl()}}"
+                                     data-title="{{ $product->getTranslate('title') }}"
+                                     data-description="{!! $product->getTranslate('description') !!}"
+                                     data-path="{{asset('/share42/')}}/"
+                                     data-icons-file="icons.png">
+                                </div>
+                                <script type="text/javascript" src="{{asset('/share42/share42.js')}}"></script>
                             </div>
                         </div>
                     </div>
-
                 </div>
-            @empty
+            </div>
+        </div>
+
+    @empty
+        <div class="product-wrap">
+            <div class="container">
                 <div class="row">
                     <div class="col-md-12">
                         {{ trans('base.no_product') }}
                     </div>
                 </div>
-            @endforelse
+            </div>
         </div>
-    </div>
+    @endforelse
 @endsection

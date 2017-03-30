@@ -1,9 +1,7 @@
 @extends('ws-app')
 @section('content')
 
-    <div class="map">
-        <iframe src="{{ $texts->get('map') }}" width="100%" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
-    </div>
+    <div id="map1"></div>
 
     <div class="callback-wrap">
         <div class="container">
@@ -32,6 +30,7 @@
                         <div class="col-md-12">
                             <button id="submit-send">{{ trans('base.send') }}</button>
                         </div>
+
                     </form>
 
                 </div>

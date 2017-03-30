@@ -52,7 +52,9 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   font-family: 'Poppins', sans-serif;
   color: #181818;
   font-weight: 500; }
-
+.content-wrap{
+    padding: 50px 0;
+}
 /********************header***************************/
 .top-section {
   overflow: hidden;
@@ -121,6 +123,9 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 .logo a {
   display: inline-block; }
+
+.logo a:hover {
+  color: inherit; }
 
 .menu {
   text-align: right; }
@@ -243,14 +248,19 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 /********************END product page***************************/
 /********************contact page***************************/
-.map,
-.maps{
+#map,
+#map1{
   margin-bottom: -9px;
   -webkit-filter: grayscale(100%);
           filter: grayscale(100%);
   -webkit-filter: invert(100%);
           filter: invert(100%); }
-
+#map{
+    height: 250px;
+}
+#map1{
+    height: 400px;
+}
 .callback-wrap {
   padding: 30px 0; }
 
@@ -282,7 +292,8 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   font-size: 14px;
   text-transform: uppercase;
   font-weight: bold;
-  margin-top: -10px; }
+  margin-top: -10px;
+  margin-bottom: 50px;}
 
 .callback-wrap button:hover {
   background: #ff1f1f; }
@@ -366,8 +377,12 @@ h4.news_title {
   display: block;
   padding-bottom: 15px;
   margin: 20px 0;
-  border-bottom: 1px solid #969595; }
-
+  border-bottom: 1px solid #969595;
+  font-size: 14px;
+  line-height: 16px;}
+.latest-news-wrap h4.news_title{
+    margin-bottom: 0;
+}
 .latest-news-wrap:hover {
   border-color: #ff391f; }
 
@@ -426,6 +441,11 @@ h4.news_title {
   float: left; }
 
 /********************END footer***************************/
+/********************share42***************************/
+#share42 a:hover{
+    background-position-y: -32px !important;
+}
+/********************END share42***************************/
 /*==========  Desktop First Method  ==========*/
 /* Large Devices, Wide Screens */
 @media only screen and (max-width: 1200px) {

@@ -163,9 +163,42 @@
 				</div>
 				<div class="col-md-4">
 					<h4 class="footer-title">{{ trans('base.want') }}</h4>
-					<div class="maps">
-						<iframe src="{{ $texts->get('map') }}" width="100%" height="250" frameborder="0" style="border:0" allowfullscreen></iframe>
-					</div>
+					<div id="map"></div>
+					<script type="text/javascript">
+						var myLat = +'{{  $texts->get('lat') }}';
+						var myLng = +'{{  $texts->get('lng') }}';
+						var myTitle = '{{  $texts->get('company_name') }}';
+						var map;
+						var map1;
+						var marker;
+						var marker1;
+						function initMap() {
+							var myLatLng = {lat: myLat, lng: myLng};
+							map = new google.maps.Map(document.getElementById('map'), {
+								center: myLatLng,
+								zoom: 15
+							});
+							var marker = new google.maps.Marker({
+								position: myLatLng,
+								map: map,
+								title: myTitle,
+								label: myTitle
+							});
+							map1 = new google.maps.Map(document.getElementById('map1'), {
+								center: myLatLng,
+								zoom: 15
+							});
+							var marker1 = new google.maps.Marker({
+								position: myLatLng,
+								map: map1,
+								title: myTitle,
+								label: myTitle
+							});
+						}
+					</script>
+					<script async defer
+							src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXSIuFGADtHtXySwrTW1Ime_ISq33M3aY&callback=initMap">
+					</script>
 				</div>
 			</div>
 		</div>
@@ -189,9 +222,6 @@
 <script src="{{ asset('/libs/unitegallery/dist/themes/tilesgrid/ug-theme-tilesgrid.js') }}"></script>
 <script src="{{ asset('/libs/unitegallery/dist/js/unitegallery.js') }}"></script>
 <script src="{{ asset('/js/plugins/sweetalert.min.js') }}"></script>
-<script>
-	new WOW().init();
-</script>
 
 </body>
 </html>
