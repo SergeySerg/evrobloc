@@ -364,7 +364,40 @@
 <!--Sweetalert scripts-->
 <script src="{{ asset('/js/plugins/sweetalert.min.js') }}"></script>
 
+{{--JS new--}}
 <!--inline scripts related to this page-->
+
+<script type="text/javascript">
+    $(function() {
+
+
+
+        $('table th input:checkbox').on('click' , function(){
+            var that = this;
+            $(this).closest('table').find('tr > td:first-child input:checkbox')
+                    .each(function(){
+                        this.checked = that.checked;
+                        $(this).closest('tr').toggleClass('selected');
+                    });
+
+        });
+
+
+        $('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
+        function tooltip_placement(context, source) {
+            var $source = $(source);
+            var $parent = $source.closest('table')
+            var off1 = $parent.offset();
+            var w1 = $parent.width();
+
+            var off2 = $source.offset();
+            var w2 = $source.width();
+
+            if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
+            return 'left';
+        }
+    })
+</script>
 <!--для Формы-->
 <script type="text/javascript">
     $(function() {
@@ -484,9 +517,9 @@
 
         $('#id-input-file-3').ace_file_input({
             style:'well',
-            btn_choose:'Drop images here or click to choose',
+            btn_choose:'Drop files here or click to choose',
             btn_change:null,
-            no_icon:'icon-picture',
+            no_icon:'icon-cloud-upload',
             droppable:true,
             thumbnail:'small'
             //,icon_remove:null//set null, to hide remove/reset button
@@ -516,9 +549,9 @@
 
         //dynamically change allowed formats by changing before_change callback function
         $('#id-file-format').removeAttr('checked').on('change', function() {
-            var before_change;
-            var btn_choose;
-            var no_icon;
+            var before_change
+            var btn_choose
+            var no_icon
             if(this.checked) {
                 btn_choose = "Drop images here or click to choose";
                 no_icon = "icon-picture";
@@ -552,7 +585,7 @@
                 }
             }
             var file_input = $('#id-input-file-3');
-            file_input.ace_file_input('update_settings', {'before_change':before_change, 'btn_choose': btn_choose, 'no_icon':no_icon});
+            file_input.ace_file_input('update_settings', {'before_change':before_change, 'btn_choose': btn_choose, 'no_icon':no_icon})
             file_input.ace_file_input('reset_input');
         });
 
@@ -579,7 +612,7 @@
             minuteStep: 1,
             showSeconds: true,
             showMeridian: false
-        });
+        })
 
         $('#colorpicker1').colorpicker();
         $('#simple-colorpicker-1').ace_colorpicker();
@@ -589,7 +622,7 @@
 
 
         //we could just set the data-provide="tag" of the element inside HTML, but IE8 fails!
-        var tag_input = $('#form-field-tags');
+        var tag_input = $('.form-field-tags');
         if(! ( /msie\s*(8|7|6)/.test(navigator.userAgent.toLowerCase())) )
             tag_input.tag({placeholder:tag_input.attr('placeholder')});
         else {
@@ -607,7 +640,7 @@
             no_icon:'icon-cloud-upload',
             droppable:true,
             thumbnail:'large'
-        });
+        })
 
         //chosen plugin inside a modal will have a zero width because the select element is originally hidden
         //and its width cannot be determined.
@@ -618,7 +651,7 @@
                 $(this).find('.chzn-drop').css('width' , '210px');
                 $(this).find('.chzn-search input').css('width' , '200px');
             });
-        });
+        })
         /**
          //or you can activate the chosen plugin after modal is shown
          //this way select element has a width now and chosen works as expected
@@ -629,36 +662,6 @@
 
     });
 </script>
-<script type="text/javascript">
-    $(function() {
-
-        $('table th input:checkbox').on('click' , function(){
-            var that = this;
-            $(this).closest('table').find('tr > td:first-child input:checkbox')
-                .each(function(){
-                    this.checked = that.checked;
-                    $(this).closest('tr').toggleClass('selected');
-                });
-
-        });
-
-
-        $('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
-        function tooltip_placement(context, source) {
-            var $source = $(source);
-            var $parent = $source.closest('table');
-            var off1 = $parent.offset();
-            var w1 = $parent.width();
-
-            var off2 = $source.offset();
-            var w2 = $source.width();
-
-            if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
-            return 'left';
-        }
-    })
-</script>
-
 <!--Для формы переключения языков-->
 <script type="text/javascript">
     $(function() {
@@ -698,5 +701,6 @@
     });
 </script>
 <!-- Scripts -->
+{{--JS new--}}
 </body>
 </html>
