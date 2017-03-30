@@ -91,9 +91,9 @@ class ArticleController extends Controller {
 
 	public function show_new($lang, $type, $id)
 	{
-		$new = Article::where('id',$id)->first();
+		$new_single = Article::where('id',$id)->first();
 		return view('frontend.new')
-			->with(compact('new'));
+			->with(compact('new_single'));
 	}
 
 	/**

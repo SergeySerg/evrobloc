@@ -3,17 +3,28 @@
 <head>
 	<meta charset="utf-8">
 	<title>
-		@if(isset($category))
+		@if(isset($new_single))
+			{{ $new_single ->getTranslate('meta_title') }}
+		@elseif(isset($category))
 			{{ $category ->getTranslate('meta_title') }}
-		@else
-			Будматеріали
 		@endif
 	</title>
+		<meta name="description"
+		content="@if(isset($new_single))
+					{{ $new_single ->getTranslate('meta_description') }}
+				 @elseif(isset($category))
+					{{ $category ->getTranslate('meta_description') }}
+            	 @endif
+		">
+		<meta name="keywords"
+			  content="
+			  		@if(isset($new_single))
+						{{ $new_single ->getTranslate('meta_keywords') }}
+					@elseif(isset($category))
+						{{ $category ->getTranslate('meta_keywords') }}
+					@endif
+		">
 
-	@if(isset($category))
-		<meta name="description" content="{{ $category ->getTranslate('meta_description') }}">
-		<meta name="keywords" content="{{ $category ->getTranslate('meta_keywords') }}">
-	@endif
 
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">

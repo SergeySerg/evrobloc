@@ -138,7 +138,7 @@
                                     <div class="span3">
                                         <div class="profile-activity clearfix" style="border-bottom: none">
                                             <div>
-                                                <img class="pull-left" alt="{{ $admin_article->title }}" style="max-width:100px" src="{{ asset($admin_article->img) }}">
+                                                <img class="pull-left" alt="{{ $admin_article->title }}" style="max-width:200px;border-radius:0%" src="{{ asset($admin_article->img) }}">
                                             </div>
 
                                             <div class="tools action-buttons">

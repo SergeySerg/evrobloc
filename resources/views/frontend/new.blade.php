@@ -13,9 +13,9 @@
         <div class="container">
             <div class="row">
                 <div class="singl-news-wrap col-md-8">
-                    <a href="#"><div class="news-img_block" style="background-image: url('/{{ $new->img }}')"></div></a>
-                    <a href="#"><h2 class="news_title">{{ $new->getTranslate('title') }}</h2></a>
-                    <p class="news_description">{!! $new->getTranslate('description') !!}</p>
+                    <a href="#"><div class="news-img_block" style="background-image: url('/{{ $new_single->img }}')"></div></a>
+                    <a href="#"><h2 class="news_title">{{ $new_single->getTranslate('title') }}</h2></a>
+                    <p class="news_description">{!! $new_single->getTranslate('description') !!}</p>
                     <a href="/{{ App::getLocale() }}/news" class="read-news all-news">{{ trans('base.all_news') }}<i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
                 </div>
                 <div class="col-md-4">
