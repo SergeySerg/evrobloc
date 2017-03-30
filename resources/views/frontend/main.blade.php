@@ -8,25 +8,10 @@
                      src="/{{ $slide->img }}"
                      data-image="/{{ $slide->img }}"
                      id="img-{{ $key }}"
-                     data-description=" {{$slide->getTranslate('description')}}">
+                     data-description="{{ $slide->getTranslate('short_description') }}">
                 @empty
                 Нет картинки
             @endforelse
-           {{-- @foreach($slides as $slide)
-
-                @if(count($slide->getImages()) > 0)
-
-                    <img alt="{{$slide->getTranslate('title')}}"
-                         src="/{{$slide->getImages()[0]['full']}}"
-                         data-image="/{{$slide->getImages()[0]['full']}}"
-                         id="img-{{$slide->id}}"
-                         data-description=" {{$slide->getTranslate('description')}}">
-
-                @endif
-
-            @endforeach
---}}
-
 
         </div>
 
