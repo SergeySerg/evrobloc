@@ -113,7 +113,7 @@
 						@foreach( $categories as $category)
 							<li class="menu_item"><a href="/{{ App::getLocale() }}/{{$category->link}}">{{ $category->getTranslate('title') }}@if($category->category_children->count()) <i class="fa fa-angle-down" aria-hidden="true"></i>@endif</a>
 								@if($category->category_children->count())
-									<ul class="sub-menu">
+									<ul class="sub-menu clearfix">
 										@foreach($category->category_children as $category_children)
 											<li class="sub-menu_item"><a href="/{{ App::getLocale() }}/products/{{ $category_children->link }}">{{ $category_children->getTranslate('title') }}</a></li>
 										@endforeach
