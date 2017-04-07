@@ -78,7 +78,7 @@ class ArticleController extends Controller {
 		->articles()
 		->where('active', '1')
 		->orderBy("priority", 'desc')
-		->paginate(5);
+		->paginate(10);
 		return view('frontend.products')
 			->with(compact('products', 'product_category'));
 	}

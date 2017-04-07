@@ -39,7 +39,8 @@ class FrontendInit {
 		}
 		$categories = Category::where('parent_id',0)
 			->where('active', 1)
-			->get();
+			->get()
+			->sortByDesc("priority");
 		$category = Category::where("link",$request->type)->first();
 		$category_parent = $category->category_parent()->first();
 		$category_children = $category->category_children()->get();
