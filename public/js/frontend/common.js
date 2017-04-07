@@ -51,18 +51,14 @@ $(function(){
     $('.menu_item:nth-child(2)').hover(
         function () {
             if ($(document).width() > 480){
-                setTimeout(function () {
-                    $('.menu_item > .sub-menu').slideDown();
-                    $('.menu_item:nth-child(2) a i').removeClass('fa-angle-down').addClass('fa-angle-up');
-                },200);
+                $('.menu_item > .sub-menu').show(500);
+                $('.menu_item:nth-child(2) a i').removeClass('fa-angle-down').addClass('fa-angle-up');
             }
         },
         function () {
             if ($(document).width() > 480) {
-                setTimeout(function () {
-                    $('.menu_item > .sub-menu').slideUp();
-                    $('.menu_item:nth-child(2) a i').removeClass('fa-angle-up').addClass('fa-angle-down');
-                },600);
+                $('.menu_item > .sub-menu').hide(500);
+                $('.menu_item:nth-child(2) a i').removeClass('fa-angle-up').addClass('fa-angle-down');
             }
         }
     );

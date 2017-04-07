@@ -396,7 +396,11 @@ h4.news_title {
 
 .latest-news-wrap:hover .latest-news_short-description {
   color: initial; }
-
+.about-us_img{
+    height: 400px;
+    -webkit-background-size: cover;
+    background-size: cover;
+}
 /********************END news page***************************/
 /********************footer***************************/
 .footer {
