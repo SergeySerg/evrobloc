@@ -29,18 +29,18 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<link rel="shortcut icon" href="{{ asset('/img/favicon/favicon.ico') }}" type="image/x-icon">
-	<link rel="apple-touch-icon" href="{{ asset('/img/favicon/apple-touch-icon.png') }}">
-	<link rel="apple-touch-icon" sizes="72x72" href="{{ asset('img/favicon/apple-touch-icon-72x72.png') }}">
-	<link rel="apple-touch-icon" sizes="114x114" href="{{ asset('/img/favicon/apple-touch-icon-114x114.png') }}">
+	<link rel="shortcut icon" href="{{ asset('/img/favicon/favicon.ico') }}?ver={{ $version }}" type="image/x-icon">
+	<link rel="apple-touch-icon" href="{{ asset('/img/favicon/apple-touch-icon.png') }}?ver={{ $version }}">
+	<link rel="apple-touch-icon" sizes="72x72" href="{{ asset('img/favicon/apple-touch-icon-72x72.png') }}?ver={{ $version }}">
+	<link rel="apple-touch-icon" sizes="114x114" href="{{ asset('/img/favicon/apple-touch-icon-114x114.png') }}?ver={{ $version }}">
 	{{-- CSS --}}
 	<link rel="stylesheet" href="{{ asset('/libs/normalize.css/normalize.css') }}">
 	<link rel="stylesheet" href="{{ asset('/libs/bootstrap/dist/css/bootstrap.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('/css/frontend/fonts.css') }}">
 	<link rel="stylesheet" href="{{ asset('/css/frontend/font-awesome.min.css') }}">
-	<link rel="stylesheet" href="{{ asset('/css/frontend/main.css') }}">
 	<link rel="stylesheet" href="{{ asset('/libs/unitegallery/dist/css/unite-gallery.css') }}">
 	<link rel="stylesheet" href="{{ asset('/css/plugins/sweetalert.css') }}">
+	<link rel="stylesheet" href="{{ asset('/css/frontend/main.css') }}?ver={{ $version }}">
 	{{-- CSS --}}
 
 </head>
@@ -106,7 +106,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-3">
-					<div class="logo"><a href="{{ asset('/') }}">{{  $texts->get('company_name') }}</a></div>
+					<div class="logo"><a href="{{ asset('/') }}"><img class="logo_img" src="{{ asset('/img/frontend/logo.png') }}" alt="">{{  $texts->get('company_name') }}</a></div>
 				</div>
 				<div class="col-md-9">
 					<ul class="menu clearfix">
@@ -154,7 +154,7 @@
 					<ul class="footer-contact">
 						<li class="footer-contact_item clearfix">
 							<i class="fa fa-envelope-o"></i><span>{{ $texts->get('mail') }}</span></li>
-						<li class="footer-contact_item clearfix"><i class="fa fa-phone"></i><span>{{ $texts->get('telephone_one') }} або {{ $texts->get('telephone_two') }} {{ $texts->get('telephone_three') }}</span></li>
+						<li class="footer-contact_item clearfix"><i class="fa fa-phone"></i><span>{{ $texts->get('telephone_one') }} або {{ $texts->get('telephone_two') }} {{ $texts->get('telephone_three') }} або {{ $texts->get('telephone_four') }}</span></li>
 						<li class="footer-contact_item clearfix"><i class="fa fa-map-marker"></i><span> {{ $texts->get('address') }}</span></li>
 						<li class="footer-contact_item clearfix">
 							<a href="{{  $texts->get('social_instagram') }}" target="_blank">
@@ -241,12 +241,12 @@
 	<script src="{{ asset('/libs/jquery/dist/jquery.min.js') }}"></script>
 <script src="{{ asset('/libs/bootstrap/dist/js/bootstrap.min.js') }}"></script>
 
-<script src="{{ asset('/js/frontend/common.js') }}"></script>
 <script src="{{ asset('/libs/unitegallery/dist/themes/default/ug-theme-default.js') }}"></script>
 <script src="{{ asset('/libs/unitegallery/dist/themes/slider/ug-theme-slider.js') }}"></script>
 <script src="{{ asset('/libs/unitegallery/dist/themes/tilesgrid/ug-theme-tilesgrid.js') }}"></script>
 <script src="{{ asset('/libs/unitegallery/dist/js/unitegallery.js') }}"></script>
 <script src="{{ asset('/js/plugins/sweetalert.min.js') }}"></script>
+<script src="{{ asset('/js/frontend/common.js') }}?ver={{ $version }}"></script>
 
 </body>
 </html>

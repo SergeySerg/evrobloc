@@ -46,7 +46,7 @@
                     <div class="contact-block">
                         <i class="fa fa-phone" aria-hidden="true"></i>
                         <div class="contact-block_name">{{ trans('base.phones') }}</div>
-                        <div class="contact-block_content">{{ $texts->get('telephone_one') }}<br>{{ $texts->get('telephone_two') }}<br>{{ $texts->get('telephone_three') }}</div>
+                        <div class="contact-block_content">{{ $texts->get('telephone_one') }}<br>{{ $texts->get('telephone_two') }}<br>{{ $texts->get('telephone_three') }}<br>{{ $texts->get('telephone_four') }}</div>
                     </div>
 
                     <div class="contact-block">
