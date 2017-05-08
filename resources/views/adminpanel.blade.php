@@ -173,7 +173,7 @@
                             </a>
 
                             <ul class="submenu">
-                                @foreach($admin_category->category_children as $admin_category_children)
+                                @foreach($admin_category->category_children->sortByDesc('priority') as $admin_category_children)
                                 <li @if(Request::is('*/'.$admin_category_children->link.'') || Request::is('*/'.$admin_category_children->link.'/*')) class="active" @endif>
                                     <a href="{{ $url }}/articles/{{ $admin_category_children->link }}" @if($admin_category_children->active == 0) style="color:#e4e1e1" @endif>
                                         {{ $admin_category_children->getTranslate('title') }}
