@@ -41,24 +41,30 @@ $(function(){
         grid_num_rows:2,
     });
     /* END фото отеля в футере */
-    $('.menu_item:nth-child(2) > a').on('click', function (e) {
+
+    $('.menu_item').on('click', function (e) {
         if ($(document).width() <= 480) {
-            $('.menu_item:nth-child(2) .sub-menu').toggleClass('active');
-            $('.menu_item:nth-child(2) a i').toggleClass('fa-angle-down').toggleClass('fa-angle-up');
+            $(this).find('.sub-menu').toggleClass('active');
+            $(this).find('a i').toggleClass('fa-angle-down').toggleClass('fa-angle-up');
         }
         e.preventDefault();
     });
-    $('.menu_item:nth-child(2)').hover(
+    $('.menu_item').hover(
         function () {
             if ($(document).width() > 480){
-                $('.menu_item > .sub-menu').show(500);
-                $('.menu_item:nth-child(2) a i').removeClass('fa-angle-down').addClass('fa-angle-up');
+                var countSubmenu = $(this).find(".sub-menu_item").length;
+                if (countSubmenu == 1 ) {
+                    $(this).find('.sub-menu').css({'min-width' : '300px'});
+                    $(this).find('.sub-menu_item').css({'width' : '100%'});
+                }
+                $(this).find('.sub-menu').show(500);
+                $(this).find('a i').removeClass('fa-angle-down').addClass('fa-angle-up');
             }
         },
         function () {
             if ($(document).width() > 480) {
-                $('.menu_item > .sub-menu').hide(500);
-                $('.menu_item:nth-child(2) a i').removeClass('fa-angle-up').addClass('fa-angle-down');
+                $(this).find('.sub-menu').hide(500);
+                $(this).find('a i').removeClass('fa-angle-up').addClass('fa-angle-down');
             }
         }
     );
