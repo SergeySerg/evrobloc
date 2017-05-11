@@ -41,13 +41,15 @@ $(function(){
         grid_num_rows:2,
     });
     /* END фото отеля в футере */
+    $('.menu_item:nth-child(2) > a,.menu_item:nth-child(3) > a').on('click', function (e) {
+         e.preventDefault();
+    });
 
-    $('.menu_item').on('click', function (e) {
+    $('.menu_item').on('click', function () {
         if ($(document).width() <= 480) {
             $(this).find('.sub-menu').toggleClass('active');
             $(this).find('a i').toggleClass('fa-angle-down').toggleClass('fa-angle-up');
         }
-        e.preventDefault();
     });
     $('.menu_item').hover(
         function () {
